@@ -1,0 +1,14 @@
+version: '3'
+services:
+
+  driver:
+    image: kaergel/docker-lcd4linux
+    volumes:
+      - ./lcd4linux.conf:/lcd4linux.conf
+      - ./get_measuring_value.py:/get_measuring_value.py
+      - /etc/hostname:/etc/sysname
+    restart: always
+    environment:
+      - PYTHONPACKAGES="py-cpuinfo"
+    devices:
+      - "/dev/bus/usb/002/004:/dev/bus/usb/002/004"
